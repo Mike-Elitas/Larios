@@ -2,13 +2,14 @@ package com.example.larios;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.snackbar.Snackbar;
 
 //Clase de logIn
 public class MainActivity extends AppCompatActivity {
@@ -27,19 +28,15 @@ public class MainActivity extends AppCompatActivity {
         //Descomentar las dos lineas de abajo para crear los usuarios y volver a comentar o borrar una vez hecho
         DBHelper dbHelper = new DBHelper(this);
 //        SQLiteDatabase database = dbHelper.getWritableDatabase();
-//        dbHelper.onCreate(database);
+//        dbHelper.onUpgrade(database, 1, 1);
 
         button.setOnClickListener(view -> {
             //Uso de Query para validar usuario mas info en DBHelper>getUser()
             if(dbHelper.getUser(user.getText().toString(), pass.getText().toString())){
-                startActivity(new Intent(this, MainActivity3.class));
-                button.setBackgroundColor(getColor(R.color.teal_200));
-                user.setHintTextColor(Color.BLACK);
-                pass.setHintTextColor(Color.BLACK);
-
-                //Temporal uso para modo camarero hasta que se implemente distincion de admin
-            } else if (user.getText().toString().equals("Paco2") && pass.getText().toString().equals("1234")){
-                startActivity(new Intent(this, MainActivity2.class));
+                //Comprobacion para ver si el usuario es administrador mas info en DBHelper>isAdmin()
+                if (dbHelper.isAdmin(user.getText().toString())){
+                    startActivity(new Intent(this, MainActivity3.class));
+                } else startActivity(new Intent(this, MainActivity2.class));
                 button.setBackgroundColor(getColor(R.color.teal_200));
                 user.setHintTextColor(Color.BLACK);
                 pass.setHintTextColor(Color.BLACK);
@@ -48,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
                 user.setHintTextColor(Color.RED);
                 pass.setHintTextColor(Color.RED);
                 button.setBackgroundColor(Color.RED);
+                Snackbar.make(this, getCurrentFocus(),
+                        "Usuario o contraseña incorrectos", Snackbar.LENGTH_LONG).show();
             }
             //Reiniciar campos tras inicio o intento fallido de sesion
             user.setText("");

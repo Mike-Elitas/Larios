@@ -11,10 +11,11 @@ import java.sql.Array;
 //Clase para gestionar la base de datos de SQL
 public class DBHelper extends SQLiteOpenHelper {
      public DBHelper(Context context){
-         super (context, "Userdata.db", null, 1);
+         super (context, DATABASE_NOMBRE, null, DATABASE_VERSION);
      }
 
      //Instancion de los datos de la BBDD y de sus tablas
+     private  final SQLiteDatabase db = getWritableDatabase();
      private static final int DATABASE_VERSION = 1;
      private static final String DATABASE_NOMBRE = "Larios";
      private static final String TABLE_1 = "CREATE TABLE Empleados (" + "ID INTEGER PRIMARY KEY AUTOINCREMENT," + "Nombre TEXT NOT NULL," + "Contraseña TEXT NOT NULL," + "Admin INTEGER NOT NULL DEFAULT 0" + ")";
@@ -42,21 +43,34 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     //Este metodo recibe por parametros los campos de usuario y contraseña en el log in y comprueba que existan
     public boolean getUser(String empleado, String password){
-        SQLiteDatabase db = getWritableDatabase();
+
         //Query que recoge el nombre de usuario que sea identico al recibido en el primer parametro
         Cursor cursor = db.rawQuery("SELECT * FROM Empleados WHERE Nombre= " + "'" +  empleado + "'", null);
-        //Este primer if se asegura de que la comprobacion se ejecute sobre el primer resultado(solo se espera uno pero da error de no ser contemplado)
-        if (cursor.moveToFirst()){
-            //Esta comprobvacion comprueba que la contraseña (segundo parametro) sea la del usuario introducido
-            if (empleado.equals(cursor.getString(1)) && password.equals(cursor.getString(2))) ;
-        }
-        return true;
+        /*Este primer if se asegura de que la comprobacionse ejecute sobre el primer resultado
+         (solo se espera uno pero da error de no ser contemplado)
+         y compara que los campos de usuario y contraseña coincidan en la base de datos*/
+        if (cursor.moveToFirst() && (empleado.equals(cursor.getString(1)) &&
+                password.equals(cursor.getString(2)))){
+            return true;
+        } else return false;
+    }
+
+    //Metodo que comprueba si el usuario recibido por parametro esta registrado en la base de datos como admin
+    public boolean isAdmin(String empleado) {
+        Cursor cursor = db.rawQuery("SELECT * FROM Empleados WHERE Nombre= " + "'" + empleado + "'", null);
+
+        /*Esta query comprueba al igual que get user la linea del usuario pasado por parametro
+        pero mira la columna Admin que contendrá 1 si el usuario es admin y sera null de no serlo*/
+        if (cursor.moveToFirst() && (empleado.equals(cursor.getString(1)) &&
+                cursor.getString(3).equals("1"))) {
+            //Esta comprobacion comprueba que la contraseña (segundo parametro) sea la del usuario introducido
+            return true;
+        } else return false;
     }
 
     // FIXME: 31/01/2022 No se como tratar la query en la app exactamente asi que no lo he sacado, volver mas adelante
     //Metodo para extrar los platos por categoria
     public String[] getPlatos(String filtro){
-        SQLiteDatabase db = getWritableDatabase();
         String[] platos = new String[100];
         Cursor cursor = db.rawQuery("SELECT Nombre FROM Platos WHERE Categoria= " + "'" +  filtro + "'", null);
         if (cursor.moveToFirst()){
