@@ -11,7 +11,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 //Clase de menu de camarero
-public class WaiterView extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
+public class WaiterView extends AppCompatActivity {
 
 
     @Override
@@ -33,68 +33,33 @@ public class WaiterView extends AppCompatActivity implements PopupMenu.OnMenuIte
         //Llamadas al metodo que muesta la información de las mesas
         table1.setOnClickListener(v -> {
             intent.putExtra("button", v.getId());
+            intent.putExtra("name", table1.getText().toString());
             startActivity(intent);
         });
         table2.setOnClickListener(v -> {
             intent.putExtra("button", v.getId());
+            intent.putExtra("name", table2.getText().toString());
             startActivity(intent);
         });
         table3.setOnClickListener(v -> {
             intent.putExtra("button", v.getId());
+            intent.putExtra("name", table3.getText().toString());
             startActivity(intent);
         });
         table4.setOnClickListener(v -> {
             intent.putExtra("button", v.getId());
+            intent.putExtra("name", table4.getText().toString());
             startActivity(intent);
         });
         table5.setOnClickListener(v -> {
             intent.putExtra("button", v.getId());
+            intent.putExtra("name", table5.getText().toString());
             startActivity(intent);
         });
         table6.setOnClickListener(v -> {
             intent.putExtra("button", v.getId());
+            intent.putExtra("name", table6.getText().toString());
             startActivity(intent);
         });
-    }
-
-    /* FIXME: 31/01/2022 Añadir la funcionalidad completa a las mesas
-    -Gestion de la cuenta
-    -Pago
-    -Borrar elementos*/
-
-        //Este metodo crea un popUp con la informacion de las mesas (beta)
-
-
-    //Este metodo implementa el metodo onMenuItemClick para gestionar el item de este menu que se clica
-    public void showPopUpTable(View view){
-        //Generacion de un menu con los items alojados en la layout popup_table
-        PopupMenu popupMenu = new PopupMenu(this, view);
-        popupMenu.setOnMenuItemClickListener(this);
-        popupMenu.inflate(R.menu.popup_table);
-        popupMenu.show();
-    }
-
-    // FIXME: 31/01/2022 Asignar las query a cada opcion
-    //Este metodo gestiona la opcion seleccionada en y realiza el metodo asociado en el switch
-    @Override
-    public boolean onMenuItemClick(MenuItem item) {
-        DBHelper dbHelper = new DBHelper(this);
-        Intent intent = new Intent(this, DishList.class);
-        //Este switch contiene los filtros de la carta
-        switch (item.getItemId()){
-            case R.id.Carnes:
-                intent.putExtra("array", dbHelper.getPlatos("Carnes"));
-                startActivityForResult(intent, 1);
-                return true;
-            case  R.id.Pescados:
-                intent.putExtra("array", dbHelper.getPlatos("Pescados"));
-                startActivityForResult(intent, 1);
-                return true;
-            case R.id.Bebidas:
-                intent.putExtra("array", dbHelper.getPlatos("Bebidas"));
-                startActivityForResult(intent, 1);
-                return true;
-            default: return false;
-        }
     }
 }

@@ -18,21 +18,63 @@ public class DBHelper extends SQLiteOpenHelper {
      private  final SQLiteDatabase db = getWritableDatabase();
      private static final int DATABASE_VERSION = 1;
      private static final String DATABASE_NOMBRE = "Larios";
-     private static final String TABLE_1 = "CREATE TABLE Empleados (" + "ID INTEGER PRIMARY KEY AUTOINCREMENT," + "Nombre TEXT NOT NULL," + "Contraseña TEXT NOT NULL," + "Admin INTEGER NOT NULL DEFAULT 0" + ")";
-     private static final String TABLE_2 = "CREATE TABLE Platos (" + "ID INTEGER PRIMARY KEY AUTOINCREMENT," + "Nombre TEXT NOT NULL," + "Categoria TEXT NOT NULL," + "Precio INTEGER NOT NULL"  + ")";
-
-
+     private static final String TABLE_1 = "CREATE TABLE Empleados (ID INTEGER PRIMARY KEY AUTOINCREMENT, Nombre TEXT NOT NULL, Contraseña TEXT NOT NULL, Admin INTEGER NOT NULL DEFAULT 0)";
+     private static final String TABLE_2 = "CREATE TABLE Platos (ID INTEGER PRIMARY KEY AUTOINCREMENT, Nombre TEXT NOT NULL, Categoria TEXT NOT NULL,Precio INTEGER NOT NULL)";
+     private static final String TABLE_3 = "CREATE TABLE Mesas (ID INTEGER PRIMARY KEY AUTOINCREMENT, Nombre)";
+    private static final String TABLE_4 = "CREATE TABLE Ingredientes (ID INTEGER PRIMARY KEY AUTOINCREMENT, Nombre)";
      //Este metodo contiene el SQL que se ejecuta cuando se crea la base de datos por primera vez
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(TABLE_1);
         db.execSQL(TABLE_2);
-        db.execSQL("INSERT INTO Empleados (Nombre, Contraseña) Values ('Maria', '123')");
-        db.execSQL("INSERT INTO Empleados (Nombre, Contraseña) Values ('Manolo', '12345')");
+        db.execSQL(TABLE_3);
+        db.execSQL(TABLE_4);
         db.execSQL("INSERT INTO Empleados (Nombre, Contraseña, Admin) Values ('Paco', '1234', 1)");
-        db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) VALUES ('Solomillo', 'Carnes', 10)");
-        db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) VALUES ('Agua', 'Bebidas', 2)");
-
+        db.execSQL("INSERT INTO Empleados (Nombre, Contraseña) Values ('Maria', '123')");
+        db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) Values ('Ensalada verde', 'Entrantes', 6.5)");
+        db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) Values ('Croquetas variadas', 'Entrantes', 9)");
+        db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) Values ('Tabla de embutidos ibéricos', 'Entrantes', 12)");
+        db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) Values ('Paella de marisco', 'Arroces', 14.5)");
+        db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) Values ('Paella de verduras', 'Arroces', 12.5)");
+        db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) Values ('Paella de marisco', 'Arroces', 13)");
+        db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) Values ('Paella Valenciana', 'Arroces', 13)");
+        db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) Values ('Arroz Negro', 'Arroces', 13.5)");
+        db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) Values ('Arroz de Bogavante', 'Arroces', 18)");
+        db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) Values ('Solomillo a la brasa', 'Carnes', 24)");
+        db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) Values ('Chuletón a la brasa', 'Carnes', 50)");
+        db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) Values ('Entrecot a la brasa', 'Carnes', 18)");
+        db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) Values ('Dorada a la sal', 'Pescados', 22)");
+        db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) Values ('Lubina a la espalda', 'Pescados', 22)");
+        db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) Values ('Bacalao con costra de allioli', 'Pescados', 24)");
+        db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) Values ('Parrillada de pescado y marisco', 'Pescados', 40)");
+        db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) Values ('Coulant', 'Postres', 4.5)");
+        db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) Values ('Tarta de queso', 'Postres', 4.5)");
+        db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) Values ('Parrillada de pescado y marisco', 'Postres', 4.5)");
+        db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) Values ('Agua', 'Bebidas', 2.5)");
+        db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) Values ('Refresco', 'Bebidas', 3)");
+        db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) Values ('Cerveza', 'Bebidas', 2.5)");
+        db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) Values ('Café', 'Bebidas', 1.5)");
+        db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) Values ('Té', 'Bebidas', 1.5)");
+        db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) Values ('Cortado', 'Bebidas', 1.5)");
+        db.execSQL("INSERT INTO Mesas (Nombre) Values ('Mesa 1')");
+        db.execSQL("INSERT INTO Mesas (Nombre) Values ('Mesa 2')");
+        db.execSQL("INSERT INTO Mesas (Nombre) Values ('Mesa 3')");
+        db.execSQL("INSERT INTO Mesas (Nombre) Values ('Mesa 4')");
+        db.execSQL("INSERT INTO Mesas (Nombre) Values ('Mesa 5')");
+        db.execSQL("INSERT INTO Mesas (Nombre) Values ('Mesa 6')");
+        db.execSQL("INSERT INTO Ingredientes (Nombre) Values ('Verduras')");
+        db.execSQL("INSERT INTO Ingredientes (Nombre) Values ('Aceitunas')");
+        db.execSQL("INSERT INTO Ingredientes (Nombre) Values ('Harina')");
+        db.execSQL("INSERT INTO Ingredientes (Nombre) Values ('Lácteos')");
+        db.execSQL("INSERT INTO Ingredientes (Nombre) Values ('Carne')");
+        db.execSQL("INSERT INTO Ingredientes (Nombre) Values ('Pescado')");
+        db.execSQL("INSERT INTO Ingredientes (Nombre) Values ('Marisco')");
+        db.execSQL("INSERT INTO Ingredientes (Nombre) Values ('Arroz')");
+        db.execSQL("INSERT INTO Ingredientes (Nombre) Values ('Pasta')");
+        db.execSQL("INSERT INTO Ingredientes (Nombre) Values ('Azuúcar')");
+        db.execSQL("INSERT INTO Ingredientes (Nombre) Values ('Chocolate')");
+        db.execSQL("INSERT INTO Ingredientes (Nombre) Values ('Huevos')");
+        db.execSQL("INSERT INTO Ingredientes (Nombre) Values ('Frutos secos')");
         // FIXME: 31/01/2022 Agregar los platos
     }
 
@@ -41,6 +83,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE Empleados");
         db.execSQL("DROP TABLE Platos");
+        db.execSQL("DROP TABLE Mesas");
+        db.execSQL("DROP TABLE Ingredientes");
         onCreate(db);
 
         }
@@ -72,17 +116,4 @@ public class DBHelper extends SQLiteOpenHelper {
         } else return false;
     }
 
-    // FIXME: 31/01/2022 No se como tratar la query en la app exactamente asi que no lo he sacado, volver mas adelante
-    //Metodo para extrar los platos por categoria
-    public ArrayList<String> getPlatos(String filtro){
-        ArrayList<String> platos = new ArrayList();
-        Cursor cursor = db.rawQuery("SELECT * FROM Platos WHERE Categoria= " + "'" +  filtro + "'", null);
-        if (cursor.moveToFirst()){
-            for (int i = 0; i < cursor.getColumnCount(); i++) {
-                platos.add(cursor.getString(1));
-            }
-        }
-        cursor.close();
-        return platos;
-    }
 }
