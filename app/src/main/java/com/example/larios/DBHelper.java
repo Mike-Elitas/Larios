@@ -5,7 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.sql.Array;
+import java.util.ArrayList;
 
 
 //Clase para gestionar la base de datos de SQL
@@ -30,6 +30,9 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO Empleados (Nombre, Contraseña) Values ('Maria', '123')");
         db.execSQL("INSERT INTO Empleados (Nombre, Contraseña) Values ('Manolo', '12345')");
         db.execSQL("INSERT INTO Empleados (Nombre, Contraseña, Admin) Values ('Paco', '1234', 1)");
+        db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) VALUES ('Solomillo', 'Carnes', 10)");
+        db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) VALUES ('Agua', 'Bebidas', 2)");
+
         // FIXME: 31/01/2022 Agregar los platos
     }
 
@@ -51,6 +54,7 @@ public class DBHelper extends SQLiteOpenHelper {
          y compara que los campos de usuario y contraseña coincidan en la base de datos*/
         if (cursor.moveToFirst() && (empleado.equals(cursor.getString(1)) &&
                 password.equals(cursor.getString(2)))){
+            cursor.close();
             return true;
         } else return false;
     }
@@ -58,25 +62,27 @@ public class DBHelper extends SQLiteOpenHelper {
     //Metodo que comprueba si el usuario recibido por parametro esta registrado en la base de datos como admin
     public boolean isAdmin(String empleado) {
         Cursor cursor = db.rawQuery("SELECT * FROM Empleados WHERE Nombre= " + "'" + empleado + "'", null);
-
         /*Esta query comprueba al igual que get user la linea del usuario pasado por parametro
         pero mira la columna Admin que contendrá 1 si el usuario es admin y sera null de no serlo*/
         if (cursor.moveToFirst() && (empleado.equals(cursor.getString(1)) &&
                 cursor.getString(3).equals("1"))) {
             //Esta comprobacion comprueba que la contraseña (segundo parametro) sea la del usuario introducido
+            cursor.close();
             return true;
         } else return false;
     }
 
     // FIXME: 31/01/2022 No se como tratar la query en la app exactamente asi que no lo he sacado, volver mas adelante
     //Metodo para extrar los platos por categoria
-    public String[] getPlatos(String filtro){
-        String[] platos = new String[100];
-        Cursor cursor = db.rawQuery("SELECT Nombre FROM Platos WHERE Categoria= " + "'" +  filtro + "'", null);
+    public ArrayList<String> getPlatos(String filtro){
+        ArrayList<String> platos = new ArrayList();
+        Cursor cursor = db.rawQuery("SELECT * FROM Platos WHERE Categoria= " + "'" +  filtro + "'", null);
         if (cursor.moveToFirst()){
             for (int i = 0; i < cursor.getColumnCount(); i++) {
-
+                platos.add(cursor.getString(1));
             }
-        } return platos;
+        }
+        cursor.close();
+        return platos;
     }
 }

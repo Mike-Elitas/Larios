@@ -10,13 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Larios">
         <activity
-            android:name=".MainActivity3"
+            android:name=".Table"
             android:exported="false" />
         <activity
-            android:name=".MainActivity2"
+            android:name=".CreateWaiter"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".DishList"
+            android:exported="false" />
+        <activity
+            android:name=".AdminView"
+            android:exported="false" />
+        <activity
+            android:name=".WaiterView"
+            android:exported="true" />
+        <activity
+            android:name=".Login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

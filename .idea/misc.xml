@@ -4,6 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Android/Larios/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Android/Larios/app/src/main/res/layout/activity_main4.xml" value="0.12552083333333333" />
+        <entry key="..\:/Android/Larios/app/src/main/res/layout/activity_main5.xml" value="0.12552083333333333" />
+        <entry key="..\:/Android/Larios/app/src/main/res/layout/create_waiter.xml" value="0.25" />
+        <entry key="..\:/Android/Larios/app/src/main/res/layout/login.xml" value="0.12552083333333333" />
+        <entry key="..\:/Android/Larios/app/src/main/res/layout/rename_table.xml" value="0.22" />
+        <entry key="..\:/Android/Larios/app/src/main/res/layout/table.xml" value="0.12552083333333333" />
+        <entry key="..\:/Android/Larios/app/src/main/res/layout/waiterView.xml" value="0.12552083333333333" />
+        <entry key="..\:/Android/Larios/app/src/main/res/menu/admin_popup_table.xml" value="0.12552083333333333" />
         <entry key="..\:/Users/Ivan/AndroidStudioProjects/Larios/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/Ivan/AndroidStudioProjects/Larios/app/src/main/res/layout/activity_main2.xml" value="0.1" />
         <entry key="..\:/Users/Ivan/AndroidStudioProjects/Larios/app/src/main/res/layout/table.xml" value="0.18" />
