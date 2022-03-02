@@ -13,8 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 public class AdminView extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
     //Boton que se usa para gestionar las acciones sobre las mesas
 
-    Button button;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +35,6 @@ public class AdminView extends AppCompatActivity implements PopupMenu.OnMenuItem
         table4.setOnClickListener(this::showPopUpTable);
         table5.setOnClickListener(this::showPopUpTable);
         table6.setOnClickListener(this::showPopUpTable);
-        // FIXME: 31/01/2022 Implementar metodo addWaiter para que conecte a la base de datos
         addW.setOnClickListener(v -> addWaiter());
     }
     //Metodo que gestiona el menu pop up
@@ -58,13 +55,12 @@ public class AdminView extends AppCompatActivity implements PopupMenu.OnMenuItem
 ////                button.setVisibility(View.INVISIBLE);
 //                return true;
 //            case R.id.Asign:
-//                // FIXME: 31/01/2022 Implementar metodo para asignar mesas a camareros, mismo problema que renombrar
+
 //                return true;
 //            default: return false;
 //        }
 //    }
 
-    // FIXME: 31/01/2022 Averiguar porque no se renobra correctamente la mesa
 
     //Metodo  para renombrar las mesas
 //    public void renameTable(){

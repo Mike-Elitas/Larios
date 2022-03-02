@@ -31,7 +31,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(TABLE_4);
         db.execSQL("INSERT INTO Empleados (Nombre, Contraseña, Admin) Values ('Paco', '1234', 1)");
         db.execSQL("INSERT INTO Empleados (Nombre, Contraseña) Values ('Maria', '123')");
-        db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) Values ('Ensalada verde', 'Entrantes', 6.5)");
+        db.execSQL("INSERT INTO Empleados (Nombre, Contraseña) Values ('Mariano', '123')");
         db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) Values ('Croquetas variadas', 'Entrantes', 9)");
         db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) Values ('Tabla de embutidos ibéricos', 'Entrantes', 12)");
         db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) Values ('Paella de marisco', 'Arroces', 14.5)");
@@ -49,7 +49,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) Values ('Parrillada de pescado y marisco', 'Pescados', 40)");
         db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) Values ('Coulant', 'Postres', 4.5)");
         db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) Values ('Tarta de queso', 'Postres', 4.5)");
-        db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) Values ('Parrillada de pescado y marisco', 'Postres', 4.5)");
+        db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) Values ('Yogurt natural', 'Postres', 4.5)");
         db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) Values ('Agua', 'Bebidas', 2.5)");
         db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) Values ('Refresco', 'Bebidas', 3)");
         db.execSQL("INSERT INTO Platos (Nombre, Categoria, Precio) Values ('Cerveza', 'Bebidas', 2.5)");
